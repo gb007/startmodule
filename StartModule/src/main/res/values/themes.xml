@@ -30,7 +30,8 @@
         <!--下面这句如果你加上觉得好看就加，不好看就不加咯-->
         <!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground">@drawable/start_module_ic_launcher_background</item>
+<!--        <item name="android:windowBackground">@drawable/start_module_ic_launcher_background</item>-->
+        <item name="android:windowBackground">@android:color/transparent</item>
 
     </style>
 

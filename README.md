@@ -17,7 +17,7 @@
 
  ````
 dependencies {
-	implementation 'com.github.gb007:startmodule:Tag'
+	implementation 'com.github.gb007:startmodule:1.0.0'
 	}
 
 ````
