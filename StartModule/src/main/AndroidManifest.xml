@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hollysmart.startmodule">
+
+    <application>
+
+<!--        <activity android:name=".SplashActivity"-->
+<!--            android:exported="true"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/LunchTheme">-->
+<!--        </activity>-->
+
+
+        <activity android:name=".ADActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".GuideActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+
+    </application>
+</manifest>
