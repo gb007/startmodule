@@ -29,7 +29,7 @@ class IntegrateApplication : Application() {
         //引导页背景图片资源ID（List<Int>）
         StartModuleConfig.GUIDE_RESOURCEID = listOf(R.mipmap.icon_guide,R.mipmap.icon_guide_2,R.mipmap.icon_guide,R.mipmap.icon_guide_2,)
         //启动模块结束后，跳转的Activity页面
-        StartModuleConfig.STARTPAGE = LoginActivity::class.java
+        StartModuleConfig.STARTPAGE = MainActivity::class.java
 
     }
 

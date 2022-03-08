@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "ModuleIntegrate"
 include ':app'
 include ':StartModule'
+include ':NavigationModule'
