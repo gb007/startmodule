@@ -1,6 +1,6 @@
 # StartModule模块使用
 
-## 1.在工程的根目录build.gradle中添加kotlin，butterknife插件依赖
+## 1.1在工程的根目录build.gradle中添加kotlin，butterknife插件依赖
 
 ````
     dependencies {
@@ -12,6 +12,21 @@
     }
 
 ````
+
+
+## 1.2在工程的根目录build.gradle中添加jitpack库依赖
+
+````
+
+allprojects {
+		repositories {
+			...
+			maven { url 'https://www.jitpack.io' }
+		}
+	}
+	
+````
+
 
 ## 2.在需要引用此类库模块的build.gradle中引入依赖
 

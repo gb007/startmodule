@@ -25,6 +25,7 @@ import com.hollysmart.fragment.DFragment
 import com.hollysmart.navigationmodule.constant.Anim
 import com.hollysmart.navigationmodule.utils.NavigationUtil
 import com.hollysmart.navigationmodule.view.EasyNavigationBar
+import com.hollysmart.startmodule.common.StartModuleConfig
 import com.hollysmart.view.KickBackAnimator
 import java.lang.Exception
 import java.lang.Thread.sleep
@@ -109,6 +110,20 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         navigationBar.setAddViewLayout(createAddView())
+
+        Handler().postDelayed(Runnable {
+            navigationBar.setMsgPointCount(0, 20)
+            navigationBar.setMsgPointCount(1, 105)
+            navigationBar.setHintPoint(3, true)
+        }, 1000)
+
+
+        Handler().postDelayed(Runnable {
+            navigationBar.clearAllHintPoint()
+            navigationBar.clearAllMsgPoint()
+            navigationBar.clearHintPoint(3)
+            navigationBar.clearMsgPoint(0)
+        }, 3000)
 
     }
 

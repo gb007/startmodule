@@ -41,8 +41,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation project(':StartModule')
+//    implementation project(':StartModule')
 
-    implementation project(':NavigationModule')
+//    implementation project(':NavigationModule')
 
+
+    //启动module
+    implementation 'com.github.gb007:startmodule:1.0.0'
+    //fragment主页module
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.2@aar'
+    implementation 'com.github.gb007:navigationmodule:1.0.1'
 }
