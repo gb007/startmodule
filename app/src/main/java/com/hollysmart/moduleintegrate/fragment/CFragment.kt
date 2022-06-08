@@ -1,4 +1,4 @@
-package com.hollysmart.fragment
+package com.hollysmart.moduleintegrate.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.hollysmart.moduleintegrate.R
 /**
  * 引导页
  */
-class AFragment: Fragment() {
+class CFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class AFragment: Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view: View = inflater.inflate(R.layout.fragment_a, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_c, container, false)
 
         return view
 

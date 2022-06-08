@@ -1,4 +1,4 @@
-package com.hollysmart.view;
+package com.hollysmart.moduleintegrate.view;
 
 import android.animation.TypeEvaluator;
 

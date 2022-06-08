@@ -6,8 +6,6 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Handler
 import android.view.View
@@ -18,18 +16,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.hollysmart.fragment.AFragment
-import com.hollysmart.fragment.BFragment
-import com.hollysmart.fragment.CFragment
-import com.hollysmart.fragment.DFragment
+import com.hollysmart.moduleintegrate.fragment.AFragment
+import com.hollysmart.moduleintegrate.fragment.CFragment
 import com.hollysmart.navigationmodule.constant.Anim
 import com.hollysmart.navigationmodule.utils.NavigationUtil
 import com.hollysmart.navigationmodule.view.EasyNavigationBar
-import com.hollysmart.startmodule.common.StartModuleConfig
-import com.hollysmart.view.KickBackAnimator
+import com.hollysmart.newsmodule.bean.LanmuBean
+import com.hollysmart.newsmodule.fragment.DongtaiFragment
+import com.hollysmart.newsmodule.value.NewsConfig
+import com.hollysmart.personmodule.common.PersonConfig
+import com.hollysmart.personmodule.fragment.PersonInfoFragment
+import com.hollysmart.moduleintegrate.view.KickBackAnimator
 import java.lang.Exception
-import java.lang.Thread.sleep
-import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,13 +70,41 @@ class MainActivity : AppCompatActivity() {
         val selectIcon =
             intArrayOf(R.mipmap.index1, R.mipmap.find1, R.mipmap.message1,R.mipmap.me1)
 
+
+
+        var personConfig = PersonConfig()
+        personConfig.userName = "张shanshan"
+        personConfig.department = "信息化技术运营保障中心"
+        personConfig.headviewUrl = "https://img0.baidu.com/it/u=859314309,692804921&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400"
+        personConfig.showFavor = View.VISIBLE
+        personConfig.showShare = View.VISIBLE
+        personConfig.showScan = View.VISIBLE
+        personConfig.showSetting = View.VISIBLE
+        personConfig.showFeed = View.VISIBLE
+        personConfig.showAbout = View.VISIBLE
+
+
+        personConfig.privacyTitle = "杨柳飞絮防治隐私政策"
+        personConfig.serviceTitle = "杨柳飞絮防治服务"
+        personConfig.privacyUrl =  "https://qnimg.daolan.com.cn/yangliufeixufangzhiyinsizhengce.html"
+        personConfig.serviceUrl =  "https://qnimg.daolan.com.cn/yangliufeixufuwuxieyi.html"
+        personConfig.copyright = "北京市机关事务管理局  版权所有"
+        personConfig.coptright_code = "Copyright \\u00a9 2019-2020 All Rights Reserved"
+
+
+        var personInfoFragment = PersonInfoFragment()
+        personInfoFragment.personConfig = personConfig
+
+
         //底部fragment
         var fragments = mutableListOf<Fragment>()
 
         fragments.add(AFragment())
-        fragments.add(BFragment())
+        fragments.add(initNewsMode())
         fragments.add(CFragment())
-        fragments.add(DFragment())
+        fragments.add(personInfoFragment)
+
+//        fragments.add(DFragment())
 
         navigationBar.titleItems(tabText)
             .normalIconItems(normalIcon)
@@ -89,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             .centerLayoutRule(EasyNavigationBar.RULE_CENTER)
             .setOnTabClickListener(object : EasyNavigationBar.OnTabClickListener {
                 override fun onTabSelectEvent(view: View?, position: Int): Boolean {
-                    if (position == 3) {
+                    if (position == 2) {
                         Toast.makeText(this@MainActivity, "请先登录", Toast.LENGTH_SHORT).show()
                         //return true则拦截事件、不进行页面切换
                         return true
@@ -126,6 +152,55 @@ class MainActivity : AppCompatActivity() {
         }, 3000)
 
     }
+
+
+    private fun initNewsMode(): Fragment {
+
+        val columnList = mutableListOf<LanmuBean>(
+            LanmuBean("34", "推荐"),
+            LanmuBean("35", "体育资讯"), LanmuBean("100", "赛事活动"),
+            LanmuBean("143", "协会"), LanmuBean("36", "健康知识")
+        )
+
+        var dongtaiFragment = DongtaiFragment()
+        //新闻模块配置类
+        var newsConfig = NewsConfig()
+        //服务器地址
+        newsConfig.basE_URL = "http://tschangyuan-api.hollysmart.com:60001"
+        //文件服务器地址（获取的图片）
+        newsConfig.filE_URL = "http://tschangyuan.hollysmart.com/"
+        //新闻栏目（id，名称）
+        newsConfig.lanmuBeans = columnList
+        //新闻栏目tab字体大小
+        newsConfig.tabTitleTextSize = 18
+        //新闻栏目tab字体颜色
+        newsConfig.titleNormalColor = R.color.tab_normal
+        //新闻栏目选中tab字体颜色
+        newsConfig.titleSelectedColor = R.color.tab_selected
+        //新闻栏目tab下划线长度
+        newsConfig.indicatorWidth = 26
+        //新闻栏目tab下划线高度
+        newsConfig.indicatorHeight = 3
+        //新闻栏目tab下划线圆角
+        newsConfig.indicatorRoundRadius = 1
+        //新闻栏目tab下划线颜色
+        newsConfig.indicatorColor = R.color.blue
+        //用户是否登陆
+        newsConfig.isLogin = false
+        //用户Id
+        newsConfig.userdId = "11111"
+        //设备唯一标识
+        newsConfig.uuid = "1234567890"
+        //javascriptObject,新闻详情页面js方法
+//        newsConfig.javascriptObject = null
+
+        dongtaiFragment.config = newsConfig
+
+        return dongtaiFragment
+    }
+
+
+
 
 
     //仿微博弹出菜单

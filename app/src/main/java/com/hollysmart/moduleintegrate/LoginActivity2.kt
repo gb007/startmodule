@@ -1,50 +1,21 @@
 package com.hollysmart.moduleintegrate
 
-import android.app.Application
-import android.content.Context
 import android.content.Intent
-import com.facebook.drawee.backends.pipeline.Fresco
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.hollysmart.loginmodule.activity.LoginActivity
 import com.hollysmart.loginmodule.common.ConFig
 import com.hollysmart.loginmodule.common.LoginConfig
 import com.hollysmart.loginmodule.common.PrivacyConfig
 import com.hollysmart.loginmodule.common.ThirdAuthConfig
-import com.hollysmart.startmodule.common.StartModuleConfig
 
-class IntegrateApplication : Application() {
+class LoginActivity2: AppCompatActivity()  {
 
-    companion object {
-        lateinit private var context: Context
-        fun getAPPContext() = context!!
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
 
-    override fun onCreate() {
-        super.onCreate()
-        context = applicationContext
-        initStartModule()
-        Fresco.initialize(this);
-    }
-
-    private fun initStartModule(){
-        //启动页加载展示时长
-        StartModuleConfig.SPLASH_LOAD_DURATION = 3000L
-        //启动页背景图片资源ID
-        StartModuleConfig.SPLASH_LOAD_BG_RESOURCE_ID = R.mipmap.bg_splash
-
-        //是否有引导页
-        StartModuleConfig.HAS_GUIDE = true
-
-        //引导页背景图片资源ID（List<Int>）
-        StartModuleConfig.GUIDE_RESOURCEID = listOf(R.mipmap.icon_guide,R.mipmap.icon_guide_2,R.mipmap.icon_guide,R.mipmap.icon_guide_2,)
-        //启动模块结束后，跳转的Activity页面
-        StartModuleConfig.STARTPAGE = LoginActivity2::class.java//MainActivity
-
-
-    }
-
-
-    private fun setLoginModuleConfig(){
 
         //登录页面设置
         var loginConfig = LoginConfig()
@@ -92,13 +63,12 @@ class IntegrateApplication : Application() {
         //qq app_secret
         thirdAuthConfig.qQ_APP_SECRET = "T4cChe0BvGGfRM56"
 
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this@LoginActivity2, LoginActivity::class.java)
 
         intent.putExtra("loginConfig", Gson().toJson(loginConfig))
         intent.putExtra("privacyConfig", Gson().toJson(privacyConfig))
         intent.putExtra("thirdAuthConfig", Gson().toJson(thirdAuthConfig))
-//      startActivity(intent)
-
-
+        startActivity(intent)
+        finish()
     }
 }
